@@ -1,28 +1,24 @@
 public class Cliente {
-    private int idCliente;
+    private String id;
     private String nombre;
     private String apellido;
     private String telefono;
-    private boolean activo;
+    private int activo; // 1 = activo, 0 = inactivo
 
-    public Cliente(int idCliente, String nombre, String apellido, String telefono, boolean activo) {
-        this.idCliente = idCliente;
+    public Cliente(String id, String nombre, String apellido, String telefono, int activo) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.activo = activo;
     }
 
-    public int getIdCliente() { return idCliente; }
-    public String getNombre() { return nombre; }
-    public String getApellido() { return apellido; }
-    public String getTelefono() { return telefono; }
-    public boolean isActivo() { return activo; }
-
-    public void setActivo(boolean activo) { this.activo = activo; }
-
     @Override
     public String toString() {
-        return idCliente + "," + nombre + "," + apellido + "," + telefono + "," + (activo ? 1 : 0);
+        return id + "," + nombre + "," + apellido + "," + telefono + "," + activo;
+    }
+
+    public String getId() {
+        return id;
     }
 }
