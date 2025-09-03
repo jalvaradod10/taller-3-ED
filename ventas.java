@@ -1,10 +1,10 @@
-public class Venta {
+public class ventas {
     private String id;
     private String idCliente;
     private String idProducto;
     private int cantidad;
 
-    public Venta(String id, String idCliente, String idProducto, int cantidad) {
+    public ventas(String id, String idCliente, String idProducto, int cantidad) {
         this.id = id;
         this.idCliente = idCliente;
         this.idProducto = idProducto;

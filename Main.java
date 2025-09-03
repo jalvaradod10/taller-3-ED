@@ -18,12 +18,12 @@ public class Main {
             sc.nextLine();
 
             switch (opcion) {
-                case 1 -> crearCliente();
-                case 2 -> crearProducto();
-                case 3 -> crearVenta();
-                case 4 -> listarVentasCliente();
-                case 5 -> System.out.println("Saliendo...");
-                default -> System.out.println("Opcion invalida");
+                case 1: crearCliente();
+                case 2: crearProducto();
+                case 3: crearVenta();
+                case 4: listarVentasCliente();
+                case 5: System.out.println("Saliendo...");
+                default: System.out.println("Opcion invalida");
             }
         } while (opcion != 5);
     }
