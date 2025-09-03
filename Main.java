@@ -28,7 +28,6 @@ public class Main {
         } while (opcion != 5);
     }
 
-    // -------------------- CLIENTES --------------------
     public static void crearCliente() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("clientes.csv", true))) {
             System.out.print("ID Cliente: ");
@@ -47,7 +46,6 @@ public class Main {
         }
     }
 
-    // -------------------- PRODUCTOS --------------------
     public static void crearProducto() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("productos.csv", true))) {
             System.out.print("ID Producto: ");
@@ -65,7 +63,7 @@ public class Main {
         }
     }
 
-    // -------------------- VENTAS --------------------
+
     public static void crearVenta() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("ventas.csv", true))) {
             System.out.print("ID Venta: ");
@@ -85,7 +83,7 @@ public class Main {
         }
     }
 
-    // -------------------- LISTAR VENTAS --------------------
+
     public static void listarVentasCliente() {
         System.out.print("ID Cliente a consultar: ");
         String idCliente = sc.nextLine();
