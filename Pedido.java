@@ -1,31 +1,26 @@
-public class Pedido {
-    private int idPedido;
-    private int idCliente;
-    private String producto;
+public class Producto {
+    private String id;
+    private String nombre;
     private double precio;
-    private int cantidad;
-    private boolean activo;
+    private int activo; // 1 = activo, 0 = inactivo
 
-    public Pedido(int idPedido, int idCliente, String producto, double precio, int cantidad, boolean activo) {
-        this.idPedido = idPedido;
-        this.idCliente = idCliente;
-        this.producto = producto;
+    public Producto(String id, String nombre, double precio, int activo) {
+        this.id = id;
+        this.nombre = nombre;
         this.precio = precio;
-        this.cantidad = cantidad;
         this.activo = activo;
     }
 
-    public int getIdPedido() { return idPedido; }
-    public int getIdCliente() { return idCliente; }
-    public String getProducto() { return producto; }
-    public double getPrecio() { return precio; }
-    public int getCantidad() { return cantidad; }
-    public boolean isActivo() { return activo; }
-
-    public void setActivo(boolean activo) { this.activo = activo; }
-
     @Override
     public String toString() {
-        return idPedido + "," + idCliente + "," + producto + "," + precio + "," + cantidad + "," + (activo ? 1 : 0);
+        return id + "," + nombre + "," + precio + "," + activo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getPrecio() {
+        return precio;
     }
 }
