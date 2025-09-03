@@ -40,7 +40,6 @@ public class Main {
         System.out.print("Seleccione una opción: ");
     }
 
-    // --- Métodos para cargar y guardar ---
     private static void cargarDatos() {
         List<String> lineasClientes = ManejoArchivos.leerArchivo("clientes.csv");
         clientes.clear();
@@ -74,7 +73,6 @@ public class Main {
         ManejoArchivos.escribirArchivo("pedidos.csv", lineasPedidos);
     }
 
-    // --- Opciones del menú ---
     private static void registrarCliente() {
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
