@@ -1,21 +1,20 @@
 
 
-def leer_csv(nombre_archivo):
-    "Lee un CSV y devuelve lista de listas (filas)"
+def leer(nombre_archivo):
     with open(nombre_archivo, "r", encoding="utf-8") as f:
         lineas = f.read().strip().split("\n")
     datos = [linea.split(",") for linea in lineas]
     return datos
 
-def escribir_csv(nombre_archivo, encabezado, filas):
-    """Escribe un CSV con encabezado y filas."""
+
+
+def escribir(nombre_archivo, encabezado, filas):
     with open(nombre_archivo, "w", encoding="utf-8") as f:
         f.write(",".join(encabezado) + "\n")
         for fila in filas:
             f.write(",".join(str(x) for x in fila) + "\n")
 
-def selection_sort(lista, key_func=lambda x: x, reverse=False):
-    """Ordena lista con Selection Sort usando clave key_func."""
+def seleccion(lista, key_func=lambda x: x, reverse=False):
     n = len(lista)
     for i in range(n):
         idx_extremo = i
@@ -28,30 +27,26 @@ def selection_sort(lista, key_func=lambda x: x, reverse=False):
                     idx_extremo = j
         lista[i], lista[idx_extremo] = lista[idx_extremo], lista[i]
     return lista
-
-# ---------------- OPCIÓN 1 ----------------
 def ver_libros_ordenados():
-    datos = leer_csv("libros.csv")
+    datos = leer("libros.csv")
     encabezado, filas = datos[0], datos[1:]
-    filas = selection_sort(filas, key_func=lambda x: int(x[4]))
+    filas = seleccion(filas, key_func=lambda x: int(x[4]))
     print("\n--- Libros ordenados por año asc ---")
     for fila in filas:
         print(f"{fila[1]}, {fila[2]}, {fila[4]}, stock={fila[5]}")
-
-# ---------------- OPCIÓN 2 ----------------
 def agregar_usuario():
-    datos = leer_csv("usuarios.csv")
+    datos = leer("usuarios.csv")
     encabezado, filas = datos[0], datos[1:]
     nuevo_id = max(int(f[0]) for f in filas) + 1
     nombre = input("Nombre del usuario: ")
     email = input("Email del usuario: ")
     filas.append([str(nuevo_id), nombre, email])
-    escribir_csv("usuarios.csv", encabezado, filas)
+    escribir("usuarios.csv", encabezado, filas)
     print(f"Usuario agregado con id={nuevo_id}.")
 
 def calcular_total_prestamos():
-    libros = leer_csv("libros.csv")
-    prestamos = leer_csv("prestamos.csv")
+    libros = leer("libros.csv")
+    prestamos = leer("prestamos.csv")
     encabezado_libros, filas_libros = libros[0], libros[1:]
     encabezado_prestamos, filas_prestamos = prestamos[0], prestamos[1:]
 
@@ -66,25 +61,25 @@ def calcular_total_prestamos():
         if libro_id in totales:
             resultados.append([libro_id, titulo, totales[libro_id]])
 
-    resultados = selection_sort(resultados, key_func=lambda x: x[2], reverse=True)
+    resultados = seleccion(resultados, key_func=lambda x: x[2], reverse=True)
 
     print("\n--- Total de préstamos por libro (mayor a menor) ---")
     for fila in resultados:
         print(f"{fila[1]} , total_prestamos: {fila[2]}")
 
-    escribir_csv("total_prestamos.csv", ["libro_id", "titulo", "total_prestamos"], resultados)
+    escribir("total_prestamos.csv", ["libro_id", "titulo", "total_prestamos"], resultados)
     print("Archivo total_prestamos.csv generado correctamente.")
 
 def ver_usuarios_con_prestamos():
-    usuarios = leer_csv("usuarios.csv")
-    prestamos = leer_csv("prestamos.csv")
+    usuarios = leer("usuarios.csv")
+    prestamos = leer("prestamos.csv")
     encabezado_u, filas_u = usuarios[0], usuarios[1:]
     encabezado_p, filas_p = prestamos[0], prestamos[1:]
 
     ids_con_prestamo = set(f[1] for f in filas_p)
     usuarios_filtrados = [u for u in filas_u if u[0] in ids_con_prestamo]
 
-    usuarios_filtrados = selection_sort(usuarios_filtrados, key_func=lambda x: x[1])
+    usuarios_filtrados = seleccion(usuarios_filtrados, key_func=lambda x: x[1])
 
     print("\n--- Usuarios con préstamos Asc ---")
     for u in usuarios_filtrados:
@@ -92,7 +87,7 @@ def ver_usuarios_con_prestamos():
 
 def menu():
     while True:
-        print("\n===== MENÚ BIBLIOTECA =====")
+        print("\n----- Menu Biblioteca -----")
         print("1. Ver libros ordenados por año")
         print("2. Agregar un nuevo usuario")
         print("3. Calcular total de préstamos por libro")
