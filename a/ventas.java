@@ -1,3 +1,4 @@
+package a;
 public class ventas {
     private String id;
     private String idCliente;
